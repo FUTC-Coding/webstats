@@ -7,5 +7,16 @@
 </body>
 
  <template name="main">
-    {{testhelper}}
+    {{#if subscriptionsReady}}
+
+      {{get (static) 'data.cpu.manufacturer'}}
+      <p>{{get (static) 'data.cpu.model'}}</p>
+      <p>{{get (static) 'data.cpu.speed'}}</p>
+      <p>{{get (static) 'data.cpu.cores'}}</p>
+
+      <p>{{get (dynamic) 'data.mem.total'}}</p>
+      <p>{{get (dynamic) 'data.mem.free'}}</p>
+      <p>{{get (dynamic) 'data.mem.used'}}</p>
+      <p>{{get (dynamic) 'data.mem.active'}}</p>
+    {{/if}}
  </template>

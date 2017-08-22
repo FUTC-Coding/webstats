@@ -5,6 +5,9 @@ import _ from 'lodash'
 
 import './main.html';
 
+const prettyBytes = require('pretty-bytes')
+const moment = require('moment')
+
 let subscriptions = [
 	Meteor.subscribe('data')
 	]
@@ -12,7 +15,7 @@ let subscriptions = [
 Template.main.helpers({
 
 	get: function(obj, what) {
-		//console.log(obj)
+		console.log(obj)
 		return _.get(obj, what)
 	},
 
@@ -24,6 +27,18 @@ Template.main.helpers({
 		return Data.findOne({type: 'static'})
 	},
 
+	format: function(f) {
+		return prettyBytes(f)
+	},
+
+	round: function(r) {
+		return Math.round(r)
+	},
+
+	moment: function(t) {
+		return moment(t).format('Do MMM YYYY, H:M:SS a')
+	},
+
 	subscriptionsReady: function() {
 		for (let sub of subscriptions){
 			if (!sub.ready()) return false
@@ -32,15 +47,15 @@ Template.main.helpers({
 	},
 
 	localadresses: function(data) {
-		let res = data.networkConnections.map(function(p){
-			return p.localaddress
+		let res = data.net.map(function(p){
+			return p.ip4
 		})
 
 		res = [...new Set(res)]
 		res.sort(function(a,b){
 			return a.localeCompare(b)
 		})
-		res = res.filter(a => a != '*' && a != '::1' && a != '127.0.0.1')
+		res = res.filter(a => a != '' && a != '127.0.0.1')
 		return res
 	}
 })

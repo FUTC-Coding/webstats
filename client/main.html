@@ -11,20 +11,27 @@
 
       <p>cpu manufacturer: {{get (static) 'data.cpu.manufacturer'}}</p>
       <p>cpu brand: {{get (static) 'data.cpu.brand'}}</p>
-      <p>cpu model: {{get (static) 'data.cpu.model'}}</p>
-      <p>cpu speed: {{get (static) 'data.cpu.speed'}}</p>
+      <p>cpu speed: {{get (static) 'data.cpu.speed'}} Ghz</p>
       <p>cpu cores: {{get (static) 'data.cpu.cores'}}</p>
 
-      <p>cpu temperature: {{get (dynamic) 'data.temp.main'}}</p>
+      <p>cpu temperature: {{get (dynamic) 'data.temp.main'}} °C</p>
+      <span>cpu core temperatures: {{get (dynamic) 'data.temp.cores[0]'}} {{get (dynamic) 'data.temp.cores[1]'}}</span>
 
-      <p>total memory: {{get (dynamic) 'data.mem.total'}}</p>
-      <p>free memory: {{get (dynamic) 'data.mem.free'}}</p>
-      <p>used memory: {{get (dynamic) 'data.mem.used'}}</p>
-      <p>active memory: {{get (dynamic) 'data.mem.active'}}</p>
+      <p>graphics card: {{get (static) 'data.graphics.controllers[0]'}}</p>
+
+      <p>total memory: {{format (get (dynamic) 'data.mem.total')}}</p>
+      <p>free memory: {{format (get (dynamic) 'data.mem.free')}}</p>
+      <p>used memory: {{format (get (dynamic) 'data.mem.used')}}</p>
+      <p>active memory: {{format (get (dynamic) 'data.mem.active')}}</p>
 
       <p>server timezone: {{get (dynamic) 'data.time.timezoneName'}}</p>
-      <p>current server time: {{get (dynamic) 'data.time.current'}}</p>
-      <p>addresses of server{{#each localadress in (localadresses (get (dynamic) 'data'))}}
+      <p>current server time: {{moment (get (dynamic) 'data.time.current')}}</p>
+
+      <p>{{#if get (dynamic) 'data.battery.hasbattery'}}
+        <p>Battery Charge: {{round (get (dynamic) 'data.battery.percent')}}</p>
+      {{/if}}</p>
+
+      <p>addresses of server{{#each localadress in (localadresses (get (static) 'data'))}}
         <span>{{localadress}}</span>
       {{/each}}</p>
     {{/if}}

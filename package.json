@@ -7,6 +7,8 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "meteor-node-stubs": "~0.2.4",
-    "osx-temperature-sensor": "^1.0.1"
+    "moment": "^2.18.1",
+    "osx-temperature-sensor": "^1.0.1",
+    "pretty-bytes": "^4.0.2"
   }
 }

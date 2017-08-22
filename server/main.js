@@ -14,22 +14,6 @@ Meteor.startup(() => {
 			Data.update({type: 'dynamic'}, {data: data, type: 'dynamic'}, {upsert: true})
 		}))
 
-		/*
-		// callback style
-		si.cpuTemperature(Meteor.bindEnvironment(function(data){
-			Data.update({type: 'cputemp'}, {temp: data.main, type: 'cputemp'}, {upsert: true})
-		}))
-
-		si.cpu(Meteor.bindEnvironment(function(data){
-			Data.update({type: 'cpuinf'}, {cpu: data.total, type: 'cpuinf'}, {upsert: true})
-		}))
-
-		si.mem(Meteor.bindEnvironment(function(data){
-			Data.update({type: 'mem'}, {mem: data.main, type: 'mem'}, {upsert: true})
-		}))
-		*/
-
-
 	}), 1000)
 	
 	Meteor.publish('data', function(){

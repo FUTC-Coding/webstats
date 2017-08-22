@@ -9,14 +9,23 @@
  <template name="main">
     {{#if subscriptionsReady}}
 
-      {{get (static) 'data.cpu.manufacturer'}}
-      <p>{{get (static) 'data.cpu.model'}}</p>
-      <p>{{get (static) 'data.cpu.speed'}}</p>
-      <p>{{get (static) 'data.cpu.cores'}}</p>
+      <p>cpu manufacturer: {{get (static) 'data.cpu.manufacturer'}}</p>
+      <p>cpu brand: {{get (static) 'data.cpu.brand'}}</p>
+      <p>cpu model: {{get (static) 'data.cpu.model'}}</p>
+      <p>cpu speed: {{get (static) 'data.cpu.speed'}}</p>
+      <p>cpu cores: {{get (static) 'data.cpu.cores'}}</p>
 
-      <p>{{get (dynamic) 'data.mem.total'}}</p>
-      <p>{{get (dynamic) 'data.mem.free'}}</p>
-      <p>{{get (dynamic) 'data.mem.used'}}</p>
-      <p>{{get (dynamic) 'data.mem.active'}}</p>
+      <p>cpu temperature: {{get (dynamic) 'data.temp.main'}}</p>
+
+      <p>total memory: {{get (dynamic) 'data.mem.total'}}</p>
+      <p>free memory: {{get (dynamic) 'data.mem.free'}}</p>
+      <p>used memory: {{get (dynamic) 'data.mem.used'}}</p>
+      <p>active memory: {{get (dynamic) 'data.mem.active'}}</p>
+
+      <p>server timezone: {{get (dynamic) 'data.time.timezoneName'}}</p>
+      <p>current server time: {{get (dynamic) 'data.time.current'}}</p>
+      <p>addresses of server{{#each localadress in (localadresses (get (dynamic) 'data'))}}
+        <span>{{localadress}}</span>
+      {{/each}}</p>
     {{/if}}
  </template>

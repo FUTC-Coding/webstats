@@ -6,9 +6,12 @@
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
+    "chart.js": "^2.6.0",
+    "highcharts": "^5.0.14",
     "meteor-node-stubs": "~0.2.4",
     "moment": "^2.18.1",
     "osx-temperature-sensor": "^1.0.1",
-    "pretty-bytes": "^4.0.2"
+    "pretty-bytes": "^4.0.2",
+    "systeminformation": "^3.26.1"
   }
 }

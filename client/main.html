@@ -3,11 +3,17 @@
 </head>
 
 <body>
-  {{> main}}
+  {{> loading}}
 </body>
 
+<template name="loading">
+	{{#if subscriptionsReady}}
+		{{>main}}
+	{{/if}}
+</template>
+
  <template name="main">
-    {{#if subscriptionsReady}}
+ 	<canvas id="myChart" width="400" height="400"></canvas>
 
       <p>cpu manufacturer: {{get (static) 'data.cpu.manufacturer'}}</p>
       <p>cpu brand: {{get (static) 'data.cpu.brand'}}</p>
@@ -24,6 +30,8 @@
       <p>used memory: {{format (get (dynamic) 'data.mem.used')}}</p>
       <p>active memory: {{format (get (dynamic) 'data.mem.active')}}</p>
 
+
+
       <p>server timezone: {{get (dynamic) 'data.time.timezoneName'}}</p>
       <p>current server time: {{moment (get (dynamic) 'data.time.current')}}</p>
 
@@ -34,5 +42,4 @@
       <p>addresses of server{{#each localadress in (localadresses (get (static) 'data'))}}
         <span>{{localadress}}</span>
       {{/each}}</p>
-    {{/if}}
  </template>
